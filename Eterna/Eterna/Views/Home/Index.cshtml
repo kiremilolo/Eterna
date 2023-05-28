@@ -1,0 +1,38 @@
+﻿   <!-- ======= Portfolio Section ======= -->
+<section id="portfolio" class="portfolio">
+ @model List<Product>
+    <div class="container">
+
+        <div class="row">
+            <div class="col-lg-12 d-flex justify-content-center">
+                <ul id="portfolio-flters">
+                    <li data-filter="*" class="filter-active">All</li>
+                    <li data-filter=".filter-app">App</li>
+                    <li data-filter=".filter-card">Card</li>
+                    <li data-filter=".filter-web">Web</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="row portfolio-container">
+
+           @foreach (var item in Model)
+            {
+                <div class="col-lg-4 col-md-6 portfolio-item filter-@(item.Category.Name.ToLower().StartsWith("a")?"app":item.Category.Name.ToLower().StartsWith("c")?"card":"web")">
+                    <div class="portfolio-wrap">
+                        <img src="assets/img/portfolio/@item.Image" class="img-fluid" alt="">
+                        <div class="portfolio-info">
+                            <h4>@item.Name</h4>
+                            <p>@item.Category.Name/p>
+                            <div class="portfolio-links">
+                                <a href="assets/img/portfolio/portfolio-3.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox" title="App 2"><i class="@item.Icon1"></i></a>
+                                <a class="portfolio-detail-open" asp-controller="home" asp-action="details" asp-route-id="@item.Id" title="More Details"><i class="@item.Icon2"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+
+        </div>
+    </div>
+</section><!-- End Portfolio Section -->
